@@ -25,17 +25,41 @@ public class FileOperate {
      *
      * @exception IOException the io exception
      * @exception IOException the io exception
-     * @exception IOException the io exception
-     * @exception IOException the io exception
      */
     public List<Double> readFileLines(String path) throws IOException {
         List<Double> stringList = new ArrayList<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path))));
         String s;
+        double d;
         while ((s = br.readLine()) != null) {
-            stringList.add(new Double(s));
+            try {
+                d = new Double(s.trim());
+                stringList.add(new Double(s.trim()));
+            } catch (Exception e) {
+
+            }
         }
         return stringList;
+    }
+
+    /**
+     * Write arrayto file.
+     *
+     * @param path     the path
+     * @param fileName the file name
+     * @param datas    the datas
+     *
+     * @exception IOException the io exception
+     */
+    public void writeArraytoFile(String path, String fileName, List<Double> datas) throws IOException {
+        File file = new File(path + fileName);
+        file.createNewFile();
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        for (Double data : datas) {
+            fileOutputStream.write((data.toString() + "\n").getBytes());
+        }
+        fileOutputStream.close();
+        fileOutputStream.flush();
     }
 
     /**
@@ -47,8 +71,11 @@ public class FileOperate {
      * @exception IOException the io exception
      * @exception IOException the io exception
      * @exception IOException the io exception
+     * @exception IOException the io exception
+     * @exception IOException the io exception
+     * @exception IOException the io exception
      */
-    public void writeFile(GtMeasure gtMeasure,String path) throws IOException {
+    public void writeFile(GtMeasure gtMeasure, String path) throws IOException {
         File file = new File(path);
         file.createNewFile();
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
@@ -65,6 +92,9 @@ public class FileOperate {
      *
      * @return the list
      *
+     * @exception IOException the io exception
+     * @exception IOException the io exception
+     * @exception IOException the io exception
      * @exception IOException the io exception
      */
     public List<String[]> readCsv(String path) throws IOException {
