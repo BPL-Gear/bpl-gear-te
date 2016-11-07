@@ -25,6 +25,7 @@ public class FileOperate {
      *
      * @exception IOException the io exception
      * @exception IOException the io exception
+     * @exception IOException the io exception
      */
     public List<Double> readFileLines(String path) throws IOException {
         List<Double> stringList = new ArrayList<>();
@@ -39,6 +40,8 @@ public class FileOperate {
 
             }
         }
+        stringList.remove(0);
+        stringList.remove(0);
         return stringList;
     }
 
@@ -49,6 +52,7 @@ public class FileOperate {
      * @param fileName the file name
      * @param datas    the datas
      *
+     * @exception IOException the io exception
      * @exception IOException the io exception
      */
     public void writeArraytoFile(String path, String fileName, List<Double> datas) throws IOException {
@@ -63,11 +67,32 @@ public class FileOperate {
     }
 
     /**
+     * Write arrayto file.
+     *
+     * @param path     the path
+     * @param fileName the file name
+     * @param datas    the datas
+     *
+     * @exception IOException the io exception
+     */
+    public void writeArraytoFile(String path, String fileName, double[] datas) throws IOException {
+        File file = new File(path + fileName);
+        file.createNewFile();
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        for (double data : datas) {
+            fileOutputStream.write((data + "\n").getBytes());
+        }
+        fileOutputStream.close();
+        fileOutputStream.flush();
+    }
+
+    /**
      * 写入测量文件.
      *
      * @param gtMeasure the gt measure
      * @param path      the path
      *
+     * @exception IOException the io exception
      * @exception IOException the io exception
      * @exception IOException the io exception
      * @exception IOException the io exception
@@ -92,6 +117,7 @@ public class FileOperate {
      *
      * @return the list
      *
+     * @exception IOException the io exception
      * @exception IOException the io exception
      * @exception IOException the io exception
      * @exception IOException the io exception
