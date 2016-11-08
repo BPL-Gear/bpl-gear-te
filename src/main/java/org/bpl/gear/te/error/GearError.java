@@ -11,11 +11,11 @@ public abstract class GearError {
     /**
      * The 切向综合偏差.
      */
-    private double fic;
+    private double fi;
     /**
      * The 一齿切向综合偏差.
      */
-    private double fica;
+    private double fia;
     /**
      * The 齿距累计偏差.
      */
@@ -23,51 +23,47 @@ public abstract class GearError {
     /**
      * The 单个齿距偏差+.
      */
-    private double fptp;
-    /**
-     * The 单个齿距偏差-.
-     */
-    private double fptn;
+    private double fpa;
 
     /**
-     * Gets fic.
+     * Gets fi.
      *
-     * @return the fic
+     * @return the fi
      */
-    public double getFic() {
-        return fic;
+    public double getFi() {
+        return fi;
     }
 
     /**
-     * Sets fic.
+     * Sets fi.
      *
-     * @param fic the fic
+     * @param fi the fi
      *
-     * @return the fic
+     * @return the fi
      */
-    public GearError setFic(double fic) {
-        this.fic = fic;
+    public GearError setFi(double fi) {
+        this.fi = fi;
         return this;
     }
 
     /**
-     * Gets fica.
+     * Gets fia.
      *
-     * @return the fica
+     * @return the fia
      */
-    public double getFica() {
-        return fica;
+    public double getFia() {
+        return fia;
     }
 
     /**
-     * Sets fica.
+     * Sets fia.
      *
-     * @param fica the fica
+     * @param fia the fia
      *
-     * @return the fica
+     * @return the fia
      */
-    public GearError setFica(double fica) {
-        this.fica = fica;
+    public GearError setFia(double fia) {
+        this.fia = fia;
         return this;
     }
 
@@ -93,44 +89,23 @@ public abstract class GearError {
     }
 
     /**
-     * Gets fptp.
+     * Gets fpa.
      *
-     * @return the fptp
+     * @return the fpa
      */
-    public double getFptp() {
-        return fptp;
+    public double getFpa() {
+        return fpa;
     }
 
     /**
-     * Sets fptp.
+     * Sets fpa.
      *
-     * @param fptp the fptp
+     * @param fpa the fpa
      *
-     * @return the fptp
+     * @return the fpa
      */
-    public GearError setFptp(double fptp) {
-        this.fptp = fptp;
-        return this;
-    }
-
-    /**
-     * Gets fptn.
-     *
-     * @return the fptn
-     */
-    public double getFptn() {
-        return fptn;
-    }
-
-    /**
-     * Sets fptn.
-     *
-     * @param fptn the fptn
-     *
-     * @return the fptn
-     */
-    public GearError setFptn(double fptn) {
-        this.fptn = fptn;
+    public GearError setFpa(double fpa) {
+        this.fpa = fpa;
         return this;
     }
 }
