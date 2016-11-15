@@ -41,6 +41,4 @@ public interface TeOperate {
      */
     @Insert("insert into te (file_l, file_r, fi_l, fia_l, fp_l, fpt_l, eccentric_l, fi_r, fia_r, fp_r, fpt_r, eccentric_r, num, drivingid, drivedid, loada, rpm) values (#{file_l},#{file_r},#{fi_l},#{fia_l},#{fp_l},#{fpt_l},#{eccentric_l},#{fi_r},#{fia_r},#{fp_r},#{fpt_r},#{eccentric_r},#{num},#{drivingid},#{drivedid},#{loada},#{rpm})")
     void insertTe(Te te);
-
-
 }
