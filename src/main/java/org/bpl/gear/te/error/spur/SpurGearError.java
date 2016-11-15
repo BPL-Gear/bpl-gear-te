@@ -26,6 +26,10 @@ public class SpurGearError extends GearError {
      * The 单个齿距偏差+.
      */
     private double fpt;
+    /**
+     * The 偏心.
+     */
+    private double eccentric;
 
     /**
      * Gets fi.
@@ -108,6 +112,27 @@ public class SpurGearError extends GearError {
      */
     public SpurGearError setFpt(double fpt) {
         this.fpt = fpt;
+        return this;
+    }
+
+    /**
+     * Gets eccentric.
+     *
+     * @return the eccentric
+     */
+    public double getEccentric() {
+        return eccentric;
+    }
+
+    /**
+     * Sets eccentric.
+     *
+     * @param eccentric the eccentric
+     *
+     * @return the eccentric
+     */
+    public SpurGearError setEccentric(double eccentric) {
+        this.eccentric = eccentric;
         return this;
     }
 }

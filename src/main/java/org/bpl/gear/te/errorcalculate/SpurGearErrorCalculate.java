@@ -70,6 +70,10 @@ public class SpurGearErrorCalculate implements ISpurGearErrorCalculate {
 //        计算单个齿距偏差
         error.setFpt(this.calculateFpt(tooths));
         error.setFp(this.calculateFp(tooths));
+
+//        计算偏心误差
+        SpurEccentricCalculate eccentricCalculate = new SpurEccentricCalculate(gear, tedata);
+        error.setEccentric(eccentricCalculate.getEccentric());
         return error;
     }
 
