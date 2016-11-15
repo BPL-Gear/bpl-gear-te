@@ -63,7 +63,7 @@ public class CircleOptimizer {
     /**
      * Optimi.
      */
-    public void Optimi() {
+    public void Optimize() {
         double[] init = new double[3];
         init[0] = initX;
         init[1] = initY;
