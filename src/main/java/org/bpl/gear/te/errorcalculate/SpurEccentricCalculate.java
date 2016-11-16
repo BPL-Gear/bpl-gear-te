@@ -74,7 +74,7 @@ public class SpurEccentricCalculate {
     }
 
     /**
-     * Calculate.
+     * 计算偏心误差.
      */
     public void calculate() {
         double rec = this.gear.getZ() * this.gear.getMn() / 2;
@@ -86,7 +86,7 @@ public class SpurEccentricCalculate {
             yi[i] = (teData[i] + rec) * Math.cos(2 * Math.PI * i / n);
             this.problem.addPoints(xi[i], yi[i]);
         }
-        optimizer.setInitX(0).setInitY(0).setInitR(rec).setMaxIterations(50);
+        optimizer.setInitX(0).setInitY(0).setInitR(rec).setMaxIterations(50).setCircle(problem);
         optimizer.Optimize();
         this.x = optimizer.getX();
         this.y = optimizer.getY();

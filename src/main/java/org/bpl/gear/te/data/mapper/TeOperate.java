@@ -1,8 +1,6 @@
 package org.bpl.gear.te.data.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.bpl.gear.te.data.bean.Te;
 
 import java.util.List;
@@ -41,4 +39,7 @@ public interface TeOperate {
      */
     @Insert("insert into te (file_l, file_r, fi_l, fia_l, fp_l, fpt_l, eccentric_l, fi_r, fia_r, fp_r, fpt_r, eccentric_r, num, drivingid, drivedid, loada, rpm) values (#{file_l},#{file_r},#{fi_l},#{fia_l},#{fp_l},#{fpt_l},#{eccentric_l},#{fi_r},#{fia_r},#{fp_r},#{fpt_r},#{eccentric_r},#{num},#{drivingid},#{drivedid},#{loada},#{rpm})")
     void insertTe(Te te);
+
+    @Update("update te set drivingid=#{drivingid},drivedid=#{drivedid},rpm=#{rpm} where num=#{num}")
+    void updateTeInfo(@Param("num") String num, @Param("drivingid") int drivingid, @Param("drivedid") int drivedid, @Param("rpm") double rpm);
 }

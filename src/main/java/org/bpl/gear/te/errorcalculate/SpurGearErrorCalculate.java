@@ -50,10 +50,15 @@ public class SpurGearErrorCalculate implements ISpurGearErrorCalculate {
         error.setFi(this.calculateFi(realTeData));
 //        把误差曲线分解到每个齿上面
         Tooth[] tooths = new Tooth[gear.getZ()];
+        double angerPerTooth = ((double) 360) / gear.getZ();
+        double angerPerPoint = ((double) 360) / tedata.length;
         for (int i = 0; i < gear.getZ(); i++) {
             tooths[i] = new Tooth(i);
             for (int j = 0; j < totalNum; j++) {
-                if ((0.1 * j < (((double) 360) / 56) * i) && (0.1 * j > (((double) 360) / 56) * (i + 1))) {
+//                if ((0.1 * j < (((double) 360) / 56) * i) && (0.1 * j > (((double) 360) / 56) * (i + 1))) {
+//                    tooths[i].addPoint(realTeData[j]);
+//                }
+                if (j * angerPerPoint >= i * angerPerTooth && j * angerPerPoint < (i + 1) * angerPerTooth) {
                     tooths[i].addPoint(realTeData[j]);
                 }
             }
@@ -73,6 +78,7 @@ public class SpurGearErrorCalculate implements ISpurGearErrorCalculate {
 
 //        计算偏心误差
         SpurEccentricCalculate eccentricCalculate = new SpurEccentricCalculate(gear, tedata);
+        eccentricCalculate.calculate();
         error.setEccentric(eccentricCalculate.getEccentric());
         return error;
     }
@@ -135,14 +141,15 @@ public class SpurGearErrorCalculate implements ISpurGearErrorCalculate {
         for (int i = 0; i < tooths.length; i++) {
             fiaErrors[i] = tooths[i].getData().get(tooths[i].getData().size() - 1) - tooths[i].getData().get(0);
         }
-        double tempfis = fiaErrors[0];
+        double tempfis = Math.abs(fiaErrors[0]);
         for (int i = 1; i < fiaErrors.length; i++) {
-            if (tempfis < fiaErrors[0]) {
-                tempfis = fiaErrors[0];
+            if (tempfis < Math.abs(fiaErrors[0])) {
+                tempfis = Math.abs(fiaErrors[0]);
             }
         }
         return tempfis;
     }
+
 
     /**
      * 单个齿对象.
@@ -266,5 +273,6 @@ public class SpurGearErrorCalculate implements ISpurGearErrorCalculate {
             return this;
         }
     }
+
 
 }

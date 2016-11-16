@@ -31,7 +31,7 @@ public class CommonsMathFFTTest {
     @Test
     public void GtFFTTest() throws IOException {
         String fileNo = "";
-        for (int i = 1; i < 180; i++) {
+        for (int i = 1; i <= 180; i++) {
             if (i < 10) {
                 fileNo = "00" + i;
             } else if (i >= 10 && i < 100) {
@@ -41,15 +41,15 @@ public class CommonsMathFFTTest {
             }
 
             FileOperate fileOperate = new FileOperate();
-            List<Double> datas = fileOperate.readFileLines("/Users/guoxiaozhong/项目/汽车齿轮高效配对/E04.参考资料/实验数据/试验台实验结果/特型齿轮/实验数据/001/TE_Test_" + fileNo + "_right.txt");
+            List<Double> datas = fileOperate.readFileLines("/Users/guoxiaozhong/项目/汽车齿轮高效配对/E04.参考资料/实验数据/试验台实验结果/特型齿轮/实验数据/001/TE_Test_" + fileNo + "_left.txt");
             double[] dataAarry = new double[datas.size()];
             for (int j = 0; j < datas.size(); j++) {
                 dataAarry[j] = datas.get(j);
             }
-            fileOperate.writeArraytoFile("/Users/guoxiaozhong/项目/汽车齿轮高效配对/E04.参考资料/实验数据/试验台实验结果/特型齿轮/实验数据/整理后数据/原始数据/", "TE_Test_" + fileNo + "_right.txt", dataAarry);
+            fileOperate.writeArraytoFile("/Users/guoxiaozhong/项目/汽车齿轮高效配对/E04.参考资料/实验数据/试验台实验结果/特型齿轮/实验数据/整理后数据/原始数据/", "TE_Test_" + fileNo + "_left.txt", dataAarry);
             GtMeasureOperate gtMeasureOperate = new GtMeasureOperate();
             double[] filtered = gtMeasureOperate.fftFilter(dataAarry, 1000);
-            fileOperate.writeArraytoFile("/Users/guoxiaozhong/项目/汽车齿轮高效配对/E04.参考资料/实验数据/试验台实验结果/特型齿轮/实验数据/整理后数据/滤波数据/", "TE_Test_" + fileNo + "_right_filtered.txt", filtered);
+            fileOperate.writeArraytoFile("/Users/guoxiaozhong/项目/汽车齿轮高效配对/E04.参考资料/实验数据/试验台实验结果/特型齿轮/实验数据/整理后数据/滤波数据/", "TE_Test_" + fileNo + "_left_filtered.txt", filtered);
         }
     }
 }

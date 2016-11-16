@@ -4,7 +4,6 @@ package org.bpl.gear.te.errorcalculate.circlefitting;
 import org.apache.commons.math3.fitting.leastsquares.LeastSquaresBuilder;
 import org.apache.commons.math3.fitting.leastsquares.LeastSquaresOptimizer;
 import org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizer;
-import org.apache.commons.math3.optim.SimpleVectorValueChecker;
 
 /**
  * The type Circle optimizer.
@@ -69,8 +68,11 @@ public class CircleOptimizer {
         init[1] = initY;
         init[2] = initR;
         LeastSquaresOptimizer.Optimum optimum = optimizer.optimize(
-                builder(circle).maxIterations(50).start(init).build());
+                builder(circle).maxIterations(100).start(init).build());
         final double[] paramFound = optimum.getPoint().toArray();
+        this.x = paramFound[0];
+        this.y = paramFound[1];
+        this.r = paramFound[2];
     }
 
     /**
@@ -82,7 +84,7 @@ public class CircleOptimizer {
      */
     public LeastSquaresBuilder builder(CircleProblem problem) {
         return new LeastSquaresBuilder()
-                .checkerPair(new SimpleVectorValueChecker(1e-6, 1e-6))
+//                .checkerPair(new SimpleVectorValueChecker(1e-6, 1e-6))
                 .maxEvaluations(100)
                 .maxIterations(getMaxIterations())
                 .model(problem.getModelFunction(), problem.getModelFunctionJacobian())
